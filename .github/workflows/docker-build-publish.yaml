@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
         
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/ibmcloud-cli:$(date +%s)
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/ibmcloud-cli:2.3.0
 
     - name: docker login
       env:
@@ -26,4 +26,4 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     
     - name: Publish Docker image to Docker Hub
-      run: docker push ${{secrets.DOCKER_USER}}/ibmcloud-cli
+      run: docker push ${{secrets.DOCKER_USER}}/ibmcloud-cli:2.3.0
