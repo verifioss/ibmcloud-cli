@@ -8,7 +8,7 @@ USER root
 WORKDIR "/tmp"
 
 RUN apk update && \
-    apk add --no-cache curl git wget bash bash-completion ncurses && \
+    apk add --no-cache curl bash bash-completion ncurses && \
     curl -LO https://download.clis.cloud.ibm.com/ibm-cloud-cli/${IBMCLOUD_CLI_VERSION}/IBM_Cloud_CLI_${IBMCLOUD_CLI_VERSION}_amd64.tar.gz && \
     tar -xvf  IBM_Cloud_CLI_${IBMCLOUD_CLI_VERSION}_amd64.tar.gz && \
     ./Bluemix_CLI/install && \
@@ -38,7 +38,6 @@ RUN apk update && \
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
     kubectl version --client && \
-    kubectl completion bash > /etc/profile.d/bash_completion.sh && \
     rm -rf kubectl IBM_Cloud_CLI_${IBMCLOUD_CLI_VERSION}_amd64.tar.gz Bluemix_CLI 
 
 COPY bash_profile /root/.bash_profile
