@@ -3,6 +3,8 @@ LABEL description="IBM Cloud CLI Docker Image"
 MAINTAINER habbdt@gmail.com
 
 ENV IBMCLOUD_CLI_VERSION=2.3.0
+ENV UID=3001
+ENV GID=3001
 
 USER root
 WORKDIR "/tmp"
@@ -17,11 +19,14 @@ RUN apk update && \
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
     kubectl version --client && \
+    addgroup -g "$GID" ibmcli && \
+    adduser -h /home/ibmcli -g "IBM Cloud Cli Docker Image User" -s /bin/bash -G ibmcli -D -u "$UID" ibmcli && \
     rm -rf kubectl IBM_Cloud_CLI_${IBMCLOUD_CLI_VERSION}_amd64.tar.gz Bluemix_CLI 
 
 COPY bash_profile /root/.bash_profile
 COPY bashrc /root/.bashrc
 
-WORKDIR "/root"
+USER ibmcli
+WORKDIR "/home/ibmcli"
 ENV TERM linux
 ENTRYPOINT ["/bin/sh", "-c"]
