@@ -8,33 +8,12 @@ USER root
 WORKDIR "/tmp"
 
 RUN apk update && \
-    apk add --no-cache curl bash bash-completion ncurses && \
+    apk add --no-cache curl bash bash-completion ncurses jq && \
     curl -LO https://download.clis.cloud.ibm.com/ibm-cloud-cli/${IBMCLOUD_CLI_VERSION}/IBM_Cloud_CLI_${IBMCLOUD_CLI_VERSION}_amd64.tar.gz && \
     tar -xvf  IBM_Cloud_CLI_${IBMCLOUD_CLI_VERSION}_amd64.tar.gz && \
     ./Bluemix_CLI/install && \
-    ibmcloud plugin install infrastructure-service && \
-    ibmcloud plugin install container-registry && \
-    ibmcloud plugin install container-service && \
-    ibmcloud plugin install fn && \
-    ibmcloud plugin install cis && \
-    ibmcloud plugin install dbaas-cli && \
-    ibmcloud plugin install dns && \
-    ibmcloud plugin install secrets-manager && \
-    ibmcloud plugin install logging && \
-    ibmcloud plugin install monitoring && \
-    ibmcloud plugin install push && \
-    ibmcloud plugin install code-engine && \
-    ibmcloud plugin install tg-cli && \
-    ibmcloud plugin install catalogs-management && \
-    ibmcloud plugin install dl-cli && \
-    ibmcloud plugin install cloudant && \
-    ibmcloud plugin install schematics && \
-    ibmcloud plugin install event-streams && \
-    ibmcloud plugin install doi && \
-    ibmcloud plugin install kp && \
-    ibmcloud plugin install at && \
-    ibmcloud plugin install cra && \
-    ibmcloud plugin install en && \
+    ibmcloud plugin repo-plugins -r "IBM Cloud" --output json | jq -r '."IBM Cloud"|.[].name' | while read plg; do \
+    ibmcloud plugin install -f -r "IBM Cloud" $plg; done || : && \
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
     install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl && \
     kubectl version --client && \
