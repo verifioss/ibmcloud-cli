@@ -23,8 +23,8 @@ RUN apk update && \
     adduser -h /home/ibmcli -g "IBM Cloud Cli Docker Image User" -s /bin/bash -G ibmcli -D -u "$UID" ibmcli && \
     rm -rf kubectl IBM_Cloud_CLI_${IBMCLOUD_CLI_VERSION}_amd64.tar.gz Bluemix_CLI 
 
-COPY bash_profile /root/.bash_profile
-COPY bashrc /root/.bashrc
+COPY bash_profile /home/ibmcli/.bash_profile
+COPY bashrc /home/ibmcli/.bashrc
 
 USER ibmcli
 WORKDIR "/home/ibmcli"
