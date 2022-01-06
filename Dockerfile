@@ -24,4 +24,4 @@ COPY bashrc /root/.bashrc
 
 WORKDIR "/root"
 ENV TERM linux
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/ibmcloud"]
+ENTRYPOINT ["/bin/bash", "-c"]
