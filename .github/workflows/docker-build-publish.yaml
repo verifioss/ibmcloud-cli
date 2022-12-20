@@ -35,4 +35,4 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         no-cache: true
-        tags: ${{secrets.DOCKER_USER}}/ibmcloud-cli:2.3.0
+        tags: ${{secrets.DOCKER_USER}}/ibmcloud-cli:2.13.0
