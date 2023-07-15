@@ -4,18 +4,18 @@ This GitHub repository is maintained by Verifioss and offers the source code for
 
 ## IBM Cloud CLI Docker Image
 
-Docker Hub Link - https://hub.docker.com/r/habbdt/ibmcloud-cli
+Docker Hub Link - https://hub.docker.com/r/verifioss/ibmcloud-cli
 
 ## Installation
 
 ### Docker 
 ```
-docker pull habbdt/ibmcloud-cli
-docker run --rm -it habbdt/ibmcloud-cli:<image_tag> bash
+docker pull verifioss/ibmcloud-cli
+docker run --rm -it verifioss/ibmcloud-cli:<image_tag> bash
 ```
 
 ### Podman
 ```
-podman pull habbdt/ibmcloud-cli
-podman run --rm -it habbdt/ibmcloud-cli:<image_tag> bash
+podman pull verifioss/ibmcloud-cli
+podman run --rm -it verifioss/ibmcloud-cli:<image_tag> bash
 ```
