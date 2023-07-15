@@ -1,6 +1,6 @@
 FROM alpine:3.18.2
 LABEL description="IBM Cloud CLI Docker Image"
-MAINTAINER habbdt@gmail.com
+MAINTAINER security@encryptiun.com
 
 ENV IBMCLOUD_CLI_VERSION=2.17.1
 
