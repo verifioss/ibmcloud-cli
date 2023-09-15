@@ -1,8 +1,8 @@
-FROM alpine:3.18.2
+FROM alpine:3.18.3
 LABEL description="IBM Cloud CLI Docker Image"
 MAINTAINER security@encryptiun.com
 
-ENV IBMCLOUD_CLI_VERSION=2.17.1
+ENV IBMCLOUD_CLI_VERSION=2.19.1
 
 USER root
 WORKDIR "/tmp"

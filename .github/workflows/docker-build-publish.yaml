@@ -36,6 +36,6 @@ jobs:
         push: true
         no-cache: true
         tags: |
-          ${{secrets.DOCKER_USER}}/ibmcloud-cli:2.17.1
+          ${{secrets.DOCKER_USER}}/ibmcloud-cli:2.19.1
           ${{secrets.DOCKER_USER}}/ibmcloud-cli:latest
           
